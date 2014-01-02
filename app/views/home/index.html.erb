@@ -1,0 +1,65 @@
+<h1>Council of Europe: <span id="year"></span></h1>
+
+<div class="container">
+  <div id="slider"></div>
+  <div id="world-map-gdp" style="width: 100%; height: 1000px;"></div>
+</div>
+<script>
+var map;
+  $(function(){
+    window.map = new jvm.WorldMap({
+      container: $('#world-map-gdp'),
+      map: 'europe_mill_en',
+      series: {
+        regions: [{
+          values: {},
+          scale: ['#C8EEFF', '#0071A4'],
+          normalizeFunction: 'polynomial'
+        }]
+      },
+      onLabelShow: function(e, el, code){
+        el.html(el.html()+' (GDP - '+gdpData[code]+')');
+      }
+    });
+  $( "#slider" ).slider({
+      min: 1940,
+      max: 2014,
+      step: 1,
+      animate: 'fast',
+      slide: function( event, ui ) {
+        $("#year").text(ui.value);
+        window.map.series.regions[0].clear();
+        window.map.series.regions[0].setValues(getCoe(ui.value));
+      }
+    });
+
+
+  });
+
+function getCoe(current_year) { 
+  result = _.filter(window.coe, function(countries, year) { 
+    return year <= current_year; 
+  });
+  out = {};
+  _.each(_.flatten(result), function(country) { 
+   out[country] = 12; 
+  });
+  return out;
+}
+coe = {
+1949: ['GR','BE','DE','FR','IR','IT','LU','NL','SE','GB'] ,
+1950: ['DE'],
+1956: ['AT'],
+1961: ['CY'],
+1965: ['MT'],
+1976: ['PT'],
+1977: ['ES'],
+1989: ['FI'],
+1990: ['HU'],
+1992: ['BG'],
+1993: ['CZ','EE','LT','RO','SK','SI'],
+1991: ['PL'],
+1995: ['LV'],
+2007: ['ME']
+}
+</script>
