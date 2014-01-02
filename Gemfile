@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'bootstrap-sass', '~> 3.0.2.0'
 
+gem 'mina'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
