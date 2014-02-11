@@ -3,14 +3,25 @@
 <div class="container">
   <div id="slider"></div>
   <br/>
-  <div id="world-map-gdp" style="width: 100%; height: 1000px;"></div>
+  <div id="world-map-gdp" style="width: 100%; height: 1000px;">
+      <div class="wrap"></div>
+  </div>
 </div>
 <script>
-var map;
-  $(function(){
+  var map;
+  var current_map = '';
+  function load_map(name) { 
+    if (name == window.current_map) 
+      return; // noop
+    window.current_map = name;
+    $('#world-map-gdp .wrap').remove();
+    $('#world-map-gdp').html('<div class="wrap"></div>');
     window.map = new jvm.WorldMap({
-      container: $('#world-map-gdp'),
-      map: 'europe_mill_en',
+      container: $('#world-map-gdp .wrap'),
+      map: name,
+      zoomOnScroll: false,
+      zoomMax: 1,
+      zoomMin: 1,
       series: {
         regions: [{
           values: {},
@@ -22,19 +33,28 @@ var map;
         el.html(el.html()+' (GDP - '+gdpData[code]+')');
       }
     });
-  $( "#slider" ).slider({
-      min: 1940,
-      max: 2014,
-      step: 1,
-      animate: 'fast',
-      slide: function( event, ui ) {
-        $("#year").text(ui.value);
-        window.map.series.regions[0].clear();
-        window.map.series.regions[0].setValues(getCoe(ui.value));
-      }
-    });
 
-
+  }
+  $(function(){
+    load_map('1945_mill_en');
+    $( "#slider" ).slider({
+        min: 1945,
+        max: 2014,
+        step: 1,
+        animate: 'fast',
+        slide: function( event, ui ) {
+          $("#year").text(ui.value);
+          if(ui.value < 1960) { 
+            load_map('1945_mill_en');
+          } else if(ui.value < 1995) { 
+            load_map('1994_mill_en');
+          } else { 
+            load_map('2013_mill_en');
+          }
+          window.map.series.regions[0].clear();
+          window.map.series.regions[0].setValues(getCoe(ui.value));
+        }
+     });
   });
 
 function getCoe(current_year) { 
@@ -48,19 +68,19 @@ function getCoe(current_year) {
   return out;
 }
 coe = {
-1949: ['GR','BE','DE','FR','IR','IT','LU','NL','SE','GB'] ,
-1950: ['DE'],
-1956: ['AT'],
-1961: ['CY'],
-1965: ['MT'],
-1976: ['PT'],
-1977: ['ES'],
-1989: ['FI'],
-1990: ['HU'],
-1992: ['BG'],
-1993: ['CZ','EE','LT','RO','SK','SI'],
-1991: ['PL'],
-1995: ['LV'],
-2007: ['ME']
+1949: ['GRC','BEL','DNK', 'FRA','IRL','ITA','LUX','NLD','SWE','GBR'] ,
+1950: ['DEU'],
+1956: ['AUT'],
+1961: ['CYP'],
+1965: ['MLT'],
+1976: ['PRT'],
+1977: ['ESP'],
+1989: ['FIN'],
+1990: ['HUN'],
+1992: ['BGR'],
+1993: ['CZE','EST','LIT','ROU','SVK','SVN'],
+1991: ['POL'],
+1995: ['LVA'],
+2007: ['MNE']
 }
 </script>
