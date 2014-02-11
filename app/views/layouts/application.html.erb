@@ -7,19 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
+  <div class="container-liquid">
     <div class="header">
       <ul class="nav nav-pills pull-right">
       </ul>
-      <h3 class="text-muted">What is Europe?</h3>
+      <h1 class="text-muted">What is Europe?</h3>
     </div>
 
 
-    <div class="row ">
-      <div class="col-lg-6">
-          <%= yield %>
-      </div>
-    </div>
+      <%= yield %>
 
     <div class="footer">
       <p>&copy; </p>
