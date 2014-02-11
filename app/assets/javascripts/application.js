@@ -1,6 +1,5 @@
 //= require jquery
 //= require 'jquery-jvectormap-1.2.2.min'
-//= require 'jquery-jvectormap-europe-mill-en'
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require underscore.min
@@ -8,4 +7,3 @@
 //= require 1945
 //= require 1994
 //= require 2013
-//= require_tree .
