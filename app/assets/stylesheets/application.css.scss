@@ -14,12 +14,22 @@ body, h1, h2, h3, h4, h5, h6,
   color:#888;
 }
 
+.caret {
+}
+
+h1 {
+border-bottom:1px dotted #ddd;
+padding-bottom:20px;
+
+}
+
 h5 {
   font-family:'Roboto', sans-serif;
-  color:#888;
+  color:#aaa;
+  font-size:12px;
   font-weight:400;
   text-transform:uppercase;
-  
+  display:inline;
 }
 
 h3 {
@@ -28,9 +38,10 @@ h3 {
 
 .megamenu {
   background:#efefef;
-  height:200px;
   padding-left:50px;
   padding-top:10px;
+  padding-bottom:40px;
+border-bottom:1px solid #ddd;
 }
 
   .megamenu ul {
@@ -39,28 +50,41 @@ h3 {
 
   .col-md-8 li {
     display: block;
-    width: 15%;
+    width: 20%;
     float: left;
   }
 
-.col-md-2 {
-border:1px solid #ddd;
+.col-md-2.menuwrap {
 padding-left:30px;
+  h1 {
+  padding-bottom:20px;
+  }
 }
 
-  .col-md-2 h1 {
-  padding-bottom:20px;
-  border-bottom: 1px dotted #ddd;
-  }
+.col-md-2.sidebar {
+border-bottom:1px solid #ddd;
+padding-left:30px;
+padding-bottom:20px;
+}
 
-.col-md-8 {
-  height:200px;
+.col-md-10.mapview {
+  padding-left:0px;
 }
 
 .text-muted { 
   font-size: 80px;
   padding-top: 20px;
   margin-left:50px;
+}
+
+
+#more {
+  padding-bottom:30px;
+  border-bottom: 1px solid #ddd;
+}
+
+#more h5{
+padding:0px;
 }
 
 #slider {
