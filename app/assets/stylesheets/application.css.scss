@@ -8,7 +8,7 @@ $accentColour: #E7A329;
 
 
 body, h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6, .text-muted {
+.h1, .h2, .h3, .h4, .h5, .h6, .text-muted, .checkbox{
   font-family:'Roboto', sans-serif;
   font-weight:100;
   color:#888;
@@ -36,12 +36,32 @@ h3 {
   font-weight:300;
 }
 
+p {
+  padding: 10px 10px 10px 0px;
+}
+
+a {
+  color:#E7A329;
+}
+
+a:hover{
+  color:#E7A329;
+}
+
+.checkbox {
+  margin-left:15px;
+}
+
+.checkbox label{
+  font-weight:100;
+}
+
 .megamenu {
   background:#efefef;
   padding-left:50px;
   padding-top:10px;
   padding-bottom:40px;
-border-bottom:1px solid #ddd;
+  border-bottom:1px solid #ddd;
 }
 
   .megamenu ul {
@@ -66,6 +86,10 @@ border-bottom:1px solid #ddd;
 padding-left:30px;
 padding-bottom:20px;
 }
+
+  .col-md-2.sidebar ul{
+    list-style-type:none;
+  }
 
 .col-md-10.mapview {
   padding-left:0px;
@@ -117,4 +141,8 @@ padding:0px;
 .wrap { 
   width: 100%;
   height: 600px;
+}
+
+.jvectormap-zoomin, .jvectormap-zoomout {
+  display:none;
 }
