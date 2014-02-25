@@ -93,6 +93,7 @@ padding-bottom:20px;
 
 .col-md-10.mapview {
   padding-left:0px;
+  position: relative;
 }
 
 .text-muted { 
@@ -145,4 +146,13 @@ padding:0px;
 
 .jvectormap-zoomin, .jvectormap-zoomout {
   display:none;
+}
+
+.tips {
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  border: 1px solid #555;
+  background: #AEAEAE;
+  color: #444;
 }

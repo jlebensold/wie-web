@@ -1,0 +1,12 @@
+defaults: &defaults
+  drive_username: jon@gmail.com
+  drive_password: XXkasjd
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

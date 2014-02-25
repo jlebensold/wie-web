@@ -4,6 +4,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require underscore.min
+//= require backbone.min
 //= require turbolinks
 //= require 1945
 //= require 1994
