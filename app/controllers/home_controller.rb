@@ -1,7 +1,9 @@
 class HomeController < ApplicationController
   def index
+=begin
     @data = [];
     return
+=end
     session = GoogleDrive.login(CONFIG['drive_username'], CONFIG['drive_password'])
     sheet = session.spreadsheet_by_key("0AsbUBK0-i61ZdEpGRFVMRk1DVGNyam5fTkdXVWU4bEE").worksheets[0]
 
