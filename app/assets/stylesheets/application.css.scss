@@ -14,24 +14,34 @@ body, h1, h2, h3, h4, h5, h6,
   color:#888;
 }
 
-.the-caret {
-  font-size: 10px;
-  color: #666;
+body {
+  background-color:#f4f4f4;
 }
 
 h1 {
 border-bottom:1px dotted #ddd;
-padding-bottom:20px;
+padding-bottom:10px;
+margin-top:20px;
+font-size:32px;
 
 }
 
-h5 {
-  font-family:'Roboto', sans-serif;
+h4 {
   color:#aaa;
   font-size:12px;
   font-weight:400;
+  display:inline;
+  text-transform:uppercase;
+  letter-spacing:0.6px;
+}
+
+h5 {
+  color:#aaa;
+  font-size:14px;
+  font-weight:300;
   text-transform:uppercase;
   display:inline;
+  letter-spacing:0.5px;
 }
 
 h3 {
@@ -39,6 +49,7 @@ h3 {
 }
 
 p {
+  font-size:18px;
   padding: 10px 10px 10px 0px;
 }
 
@@ -58,12 +69,23 @@ a:hover{
   font-weight:100;
 }
 
+  .configure-band a {
+    color:#999;
+  }
+
+  .configure-band a:hover{
+    text-decoration:none;
+  }
+
+.the-caret {
+  font-size: 10px;
+  color: #999;
+}
+
 .megamenu {
-  background:#efefef;
   padding-left:50px;
   padding-top:10px;
-  padding-bottom:40px;
-  border-bottom:1px solid #ddd;
+  padding-bottom:20px;
 }
 
   .megamenu ul {
@@ -83,17 +105,20 @@ padding-left:30px;
   }
 }
 
-.col-md-2.sidebar {
-border-bottom:1px solid #ddd;
-padding-left:30px;
-padding-bottom:20px;
+
+.col-md-3.sidebar {
+background:#fff;
+padding-left:20px;
+margin-left:40px;
+padding-bottom:15px;
+margin-right:20px;
 }
 
-  .col-md-2.sidebar ul{
+  .col-md-3.sidebar ul{
     list-style-type:none;
   }
 
-.col-md-10.mapview {
+.col-md-8.mapview {
   padding-left:0px;
   position: relative;
 }
@@ -106,8 +131,8 @@ padding-bottom:20px;
 
 
 #more {
-  padding-bottom:30px;
-  border-bottom: 1px solid #ddd;
+  padding-bottom:10px;
+  border-bottom: 1px dotted #ddd;
 }
 
 #more h5{
@@ -129,7 +154,6 @@ padding:0px;
   }
 
 .sliderwrap {
-  background:#efefef;
   height: 200px;
   padding:50px;
 }
@@ -155,6 +179,31 @@ padding:0px;
   width: 200px;
   height: 300px;
   border: 1px solid #555;
-  background: #AEAEAE;
-  color: #444;
+  background: #222;
+  opacity:0.95;
+  h5 { 
+  
+  }
+  p { 
+    color: #ccc;
+    padding:0px;
+    margin-bottom:15px;
+  }
+  h4 {
+    color:#777;
+  }
+  
+  h3 {
+  font-weight:100;
+  color:#eee;
+  padding-bottom:5px;
+  margin-top:10px;
+  border-bottom: 1px dotted #444;
+}
+
+  .glyphicon {
+    float:right;
+    font-size:12px;
+    color:#666;
+  }
 }
