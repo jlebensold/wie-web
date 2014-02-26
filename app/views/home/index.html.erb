@@ -1,3 +1,85 @@
+<div class="megamenu">
+  <div class="configure-band">
+    <a class="toggler" href="#"> 
+      <span class="glyphicon glyphicon-cog"></span> <h5>Configure/Filter</h5> &nbsp; <span class="the-caret">&#9660;</span>
+     </a>
+  </div>
+  <div class="row toggled">
+    <div class="col-md-4 menuwrap">
+    <h3>Institutions/Groupings</h3>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        Council of Europe
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        European Customs Union
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        European Free Trade Agreement (EFTA)
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        European Union (EU)
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        Eurozone
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="">
+        Schengen Area
+      </label>
+    </div>
+    </div>
+    <div class="col-md-8 menuwrap">
+    <h3>Countries</h3>
+      <ul>
+        <li>Austria</li>
+        <li>Belgium</li>
+        <li>Bulgaria</li>
+        <li>Croatia</li>
+        <li>Cyprus</li>
+        <li>CzechRepublic</li>
+        <li>Denmark</li>
+        <li>Estonia</li>
+        <li>Finland</li>
+        <li>France</li>
+        <li>Germany</li>
+        <li>Greece</li>
+        <li>Hungary</li>
+        <li>Ireland</li>
+        <li>Italy</li>
+        <li>Latvia</li>
+        <li>Lithuania</li>
+        <li>Luxembourg</li>
+        <li>Malta</li>
+        <li>Netherlands</li>
+        <li>Poland</li>
+        <li>Portugal</li>
+        <li>Romania</li>
+        <li>Slovakia</li>
+        <li>Slovenia</li>
+        <li>Spain</li>
+        <li>Sweden</li>
+        <li>United Kingdom</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col-md-2 sidebar">
     <h1>Council of Europe</h1>
@@ -32,7 +114,8 @@
 <script>
   $( window ).resize(setMapScale);
   function setMapScale() {
-    map.setScale(map.width/1000, map.width, map.height);
+    // TODO: refine this so it always looks awesome
+    map.setScale(map.width/1000, map.width, map.height - 400);
   }
   var map;
   var current_map = '';
@@ -75,12 +158,14 @@
     $("#world-map-gdp").append(emt);
   }
   $(function(){
-    load_map('1945_mill_en');
+    load_megamenu();
+    year = 2014;
     $( "#slider" ).slider({
         min: 1945,
-        max: 2014,
+        max: 2015,
         step: 1,
         animate: 'fast',
+        value: year,
         slide: function( event, ui ) {
           $(".year").text(ui.value);
           if(ui.value < 1960) {
@@ -94,8 +179,26 @@
           window.map.series.regions[0].setValues(getCoe(ui.value));
         }
      });
+    load_map('2013_mill_en');
+    $(".year").text(year);
+    window.map.series.regions[0].setValues(getCoe(year));
   });
+function load_megamenu() { 
+  $(".toggled").hide();
+  $("a.toggler").click(function(e) { 
+    e.preventDefault();
+    if ($(".toggled").hasClass('toggled-out')) { 
+      $(".toggled").slideUp();
+      $(".toggled").removeClass('toggled-out');
+      $(".toggler .the-caret").html("&#9660;");
+    } else { 
+      $(".toggled").slideDown();
+      $(".toggled").addClass('toggled-out');
+      $(".toggler .the-caret").html("&#9650;");
+    }
 
+  });
+}
 function getCoe(current_year) {
   result = _.filter(window.coe, function(countries, year) {
     return year <= current_year;
