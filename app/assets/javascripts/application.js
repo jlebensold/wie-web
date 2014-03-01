@@ -1,12 +1,12 @@
 //= require jquery
-//= require 'jquery-jvectormap-1.2.2.min'
-//= require 'jquery-jvectormap-europe-mill-en'
+//= require jquery-jvectormap-1.2.2.min
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require underscore.min
 //= require backbone.min
-//= require turbolinks
+//= require jquery.ui.labeledslider
 //= require 1945
 //= require 1994
 //= require 2013
+//= require wie
 //= require_tree .
