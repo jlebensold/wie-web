@@ -41,7 +41,8 @@ function showCountry(ev, country) {
   '<h4>Landmass (km2): </h4>' + '<p>' + ob.landmass + '</p>' +
   '<h4>Currency: </h4>' + '<p>' + ob.currency + '</p>' +
   '</div>');
-  $($(emt).find('.close')).click(function(e) { 
+  $($(emt).find('.close')).click(function(e) {
+    e.preventDefault();
     $(".tips").remove();
   });
   $(emt).css({
@@ -58,7 +59,7 @@ function load_slider(year) {
 //      tickInterval: 5,
       tickArray: key_dates,
         tickLabels: {
-          1960: 'EFTA established'
+          1960: 'EFTA'
       },
       orientation: 'horizontal',
       min: 1945,
@@ -103,11 +104,11 @@ function load_megamenu() {
 var Country = Backbone.Model.extend({});;
 var CountryList = Backbone.Collection.extend({
   model: Country,
-  getCoe: function(year) { 
+  getCoe: function(year) {
     o = {};
-    _.each(this.filter(function(c) { 
+    _.each(this.filter(function(c) {
       return c.get('coe_at') <= year;
-    }),function(c) { 
+    }),function(c) {
       return o[c.get('gis')] = 12;
     });
     return o;
