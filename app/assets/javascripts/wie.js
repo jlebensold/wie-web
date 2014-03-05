@@ -53,14 +53,57 @@ function showCountry(ev, country) {
   });
   $("#world-map-gdp").append(emt);
 }
+function load_grouping(groups) { 
+  $(".infobox").empty() 
+  $(".infobox").html('<div class="panel-group" id="accordion"></div>');
+  _.each(groups, function(group) { 
+    render_group_panel($(".panel-group"), group);
+  });
+  $(".infobox").collapse();
+}
+function render_group_panel(emt, group) {
+  emt.append(
+  '<div class="panel-heading">' +
+    '<h1>' + 
+      '<a data-toggle="collapse" data-parent="#accordion" href="#'+group.code+'">' +
+        group.name + 
+      '</a>' +
+    '</h1>' +
+  '</div>' +
+  '<div id="'+group.code+'" class="panel-collapse collapse">' +
+     '<div class="panel-body">' +
+      '<h5>Overview</h5>' + 
+      '<ul>' +
+        '<li><h4>Established:</h4> </br><a href="'+group.uri+'">'+group.established+'</a></li>' +
+        '<li><h4>Members:</h4> </br>'+group.num_countries+'</li>' +
+        '<li><h4>Headquarters:</h4> </br><a href="/">???</a></li>' + 
+      '</ul>' +
+       group.definition +
+     '</div>' + 
+  '</div>');
+}
+CURRENT_INDICATOR = '';
+function load_checkbox_events() {
+  $(".groupings input[type=checkbox]").click(function() {
+    CURRENT_INDICATOR = '';
+    reload_map(year);
+    _.each($(".groupings input:checked"), function(emt) { 
+      CURRENT_INDICATOR = $(emt).val();
+      reload_map(year);
+      return;
+    });
+  });
+}
 function load_slider(year) {
   key_dates = [1945,1949,1951,1957,1958,1960,1989,1992,1995,2002,2004];
   $( "#slider" ).labeledslider({
-//      tickInterval: 5,
+      tickInterval: 10,
+/*
       tickArray: key_dates,
         tickLabels: {
           1960: 'EFTA'
       },
+*/
       orientation: 'horizontal',
       min: 1945,
       max: 2015,
@@ -78,12 +121,15 @@ function load_slider(year) {
         if (ui.value >= 2001) {
           load_map('2013_mill_en');
         }
-        window.map.series.regions[0].clear();
-        window.map.series.regions[0].setValues(countries.getCoe(ui.value));
+        reload_map(ui.value);
       }
    });
   load_map('2013_mill_en');
   $(".year").text(year);
+}
+function reload_map(year) {
+  window.map.series.regions[0].clear();
+  window.map.series.regions[0].setValues(countries.getYear(CURRENT_INDICATOR, year));
 }
 function load_megamenu() {
   $(".toggled").hide();
@@ -104,10 +150,10 @@ function load_megamenu() {
 var Country = Backbone.Model.extend({});;
 var CountryList = Backbone.Collection.extend({
   model: Country,
-  getCoe: function(year) {
+  getYear: function(prop, year) {
     o = {};
     _.each(this.filter(function(c) {
-      return c.get('coe_at') <= year;
+      return c.get(prop+'_at') <= year && c.get(prop+'_at') != 0;
     }),function(c) {
       return o[c.get('gis')] = 12;
     });

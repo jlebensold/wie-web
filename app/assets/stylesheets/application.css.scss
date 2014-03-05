@@ -149,14 +149,22 @@ margin-right:20px;
   margin-left:50px;
 }
 
-
-#more {
+.panel-group { 
+  height: 580px;
+  overflow: scroll;
+}
+.panel-collapse {
   padding-bottom:10px;
   border-bottom: 1px dotted #ddd;
+  border-top: 0px;
 }
-
-#more h5{
-padding:0px;
+.panel-body {
+}
+.panel-heading  h1 a { 
+  color: #666; 
+}
+.panel-collapse h5{
+  padding:0px;
 }
 
 #slider {

@@ -4,6 +4,7 @@
 //= require jquery.ui.all
 //= require underscore.min
 //= require backbone.min
+//= require bootstrap.min
 //= require jquery.ui.labeledslider
 //= require 1945
 //= require 1994
