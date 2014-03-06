@@ -78,7 +78,13 @@ function render_group_panel(emt, group) {
         '<li><h4>Members:</h4> </br>'+group.num_countries+'</li>' +
         '<li><h4>Headquarters:</h4> </br><a href="/">???</a></li>' + 
       '</ul>' +
-       group.definition +
+      group.definition +
+      '</br>' +
+      '<h5>Read More</h5>' +
+      '<ul>' +
+        '<li><a href="'+group.url+'">Official Site</a></li>' +
+        '<li><a href="'+group.wiki_uri+'">Wikipedia</a></li>' +
+      '</ul>' +
      '</div>' + 
   '</div>');
 }
