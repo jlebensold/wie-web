@@ -29,7 +29,7 @@ $accentColour: #E7A329;
 .vertical .ui-slider-label-ticks span { position: relative; display: inline-block; margin-left: 1em; top: .6em; }
 
 body, h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6, .text-muted, .checkbox,  .ui-slider-labels{
+.h1, .h2, .h3, .h4, .h5, .h6, .text-muted, .checkbox,  text, label, .ui-slider-labels, .key_date {
   font-family:'Roboto', sans-serif;
   font-weight:100;
   color:#888;
@@ -86,9 +86,22 @@ a:hover{
 }
 
 text {
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 400;
 }
+
+label {
+  font-size:16px;
+  padding-right:40px;
+  span {
+  font-weight:400;
+  } 
+}
+
+.key_date p strong {
+  font-size:20px;
+}
+
 
 .checkbox {
   margin-left:15px;
@@ -119,8 +132,8 @@ text {
 
 .megamenu {
   padding-left:50px;
-  padding-top:10px;
-  padding-bottom:20px;
+  padding-top:5px;
+  padding-bottom:10px;
 }
 
   .megamenu ul {
@@ -133,11 +146,10 @@ text {
     float: left;
   }
 
-.col-md-2.menuwrap {
-padding-left:30px;
-  h1 {
-  padding-bottom:20px;
-  }
+.col-md-6.menuwrap {
+  text-align:right;
+  float:right;
+  margin-right: 20px;
 }
 
 
@@ -147,6 +159,13 @@ padding-left:20px;
 margin-left:40px;
 padding-bottom:15px;
 margin-right:20px;
+
+  .glyphicon:empty {
+  width: 1.2em;
+  font-size:20px;
+  }
+
+
 }
 
   .col-md-3.sidebar ul{
@@ -255,7 +274,7 @@ margin-right:20px;
   top: -4px;
   background: #FAFAFA;
   border-radius: 10px;
-  border: 1px solid darken($accentColour, 10%);
+  border: 5px solid #D8851B;
 }
 .tips {
   position: absolute;
@@ -292,4 +311,7 @@ margin-right:20px;
 }
 .footer {
   text-align: center;
+  p{
+    font-size:10px;
+  }
 }

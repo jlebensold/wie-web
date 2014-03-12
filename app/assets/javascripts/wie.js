@@ -13,6 +13,7 @@ function load_map(name) {
   window.map = new jvm.WorldMap({
     container: $('#world-map-gdp .wrap'),
     map: name,
+    backgroundColor: '#666',
     zoomOnScroll: false,
     series: {
       regions: [{
@@ -21,8 +22,8 @@ function load_map(name) {
     },
     markerStyle: {
       initial: {
-        fill: '#F8E23B',
-        stroke: '#383f47'
+        fill: '#D8851B',
+        stroke: '#E7A329'
       }
     },
     onRegionClick: function(e, gis) {
