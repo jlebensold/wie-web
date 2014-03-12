@@ -16,9 +16,7 @@ function load_map(name) {
     zoomOnScroll: false,
     series: {
       regions: [{
-        values: {},
-        scale: ['#C8EEFF', '#E7A329'],
-        normalizeFunction: 'polynomial'
+        attribute: 'fill'
       }]
     },
     onLabelShow: function(e, el, code){
@@ -29,7 +27,6 @@ function load_map(name) {
     }
   });
   setMapScale();
-
 }
 function showCountry(ev, country) {
   $(".tips").remove();
@@ -53,10 +50,10 @@ function showCountry(ev, country) {
   });
   $("#world-map-gdp").append(emt);
 }
-function load_grouping(groups) { 
-  $(".infobox").empty() 
+function load_grouping(groups) {
+  $(".infobox").empty()
   $(".infobox").html('<div class="panel-group" id="accordion"></div>');
-  _.each(groups, function(group) { 
+  _.each(groups, function(group) {
     render_group_panel($(".panel-group"), group);
   });
   $(".infobox").collapse();
@@ -64,19 +61,19 @@ function load_grouping(groups) {
 function render_group_panel(emt, group) {
   emt.append(
   '<div class="panel-heading">' +
-    '<h1>' + 
+    '<h1>' +
       '<a data-toggle="collapse" data-parent="#accordion" href="#'+group.code+'">' +
-        group.name + 
+        group.name +
       '</a>' +
     '</h1>' +
   '</div>' +
   '<div id="'+group.code+'" class="panel-collapse collapse">' +
      '<div class="panel-body">' +
-      '<h5>Overview</h5>' + 
+      '<h5>Overview</h5>' +
       '<ul>' +
         '<li><h4>Established:</h4> </br><a href="'+group.uri+'">'+group.established+'</a></li>' +
         '<li><h4>Members:</h4> </br>'+group.num_countries+'</li>' +
-        '<li><h4>Headquarters:</h4> </br><a href="/">???</a></li>' + 
+        '<li><h4>Headquarters:</h4> </br><a href="/">???</a></li>' +
       '</ul>' +
       group.definition +
       '</br>' +
@@ -85,19 +82,19 @@ function render_group_panel(emt, group) {
         '<li><a href="'+group.url+'">Official Site</a></li>' +
         '<li><a href="'+group.wiki_uri+'">Wikipedia</a></li>' +
       '</ul>' +
-     '</div>' + 
+     '</div>' +
   '</div>');
 }
-CURRENT_INDICATOR = '';
-function load_checkbox_events() {
-  $(".groupings input[type=checkbox]").click(function() {
-    CURRENT_INDICATOR = '';
+function load_checkboxes() {
+  $(".groupings input[type=checkbox]").bootstrapSwitch('size', 'small');
+  $(".groupings input").on('switchChange', function (e, data) {
+    countries.clearIndicators();
     reload_map(year);
-    _.each($(".groupings input:checked"), function(emt) { 
-      CURRENT_INDICATOR = $(emt).val();
-      reload_map(year);
+    _.each($(".groupings input:checked"), function(emt) {
+      countries.addIndicator($(emt).val());
       return;
     });
+    reload_map(year);
   });
 }
 function load_slider(year) {
@@ -135,7 +132,9 @@ function load_slider(year) {
 }
 function reload_map(year) {
   window.map.series.regions[0].clear();
-  window.map.series.regions[0].setValues(countries.getYear(CURRENT_INDICATOR, year));
+  result = countries.getYear(year);
+  //window.map.series.regions[0].setScale(result.scale);
+  window.map.series.regions[0].setValues(result);
 }
 function load_megamenu() {
   $(".toggled").hide();
@@ -143,7 +142,7 @@ function load_megamenu() {
     e.preventDefault();
     if ($(".toggled").hasClass('toggled-out')) {
       $(".toggled").slideUp();
-      $(".toggled").removeClass('torgled-out');
+      $(".toggled").removeClass('toggled-out');
       $(".toggler .the-caret").html("&#9660;");
     } else {
       $(".toggled").slideDown();
@@ -153,16 +152,72 @@ function load_megamenu() {
 
   });
 }
+COLOR_MAP = {};
+function load_color_map() {
+  $(".groupings input[type=checkbox]").each(function(emt) {
+    COLOR_MAP[$(this).val()] = $(this).data('color');
+  });
+}
 var Country = Backbone.Model.extend({});;
 var CountryList = Backbone.Collection.extend({
   model: Country,
-  getYear: function(prop, year) {
-    o = {};
-    _.each(this.filter(function(c) {
-      return c.get(prop+'_at') <= year && c.get(prop+'_at') != 0;
-    }),function(c) {
-      return o[c.get('gis')] = 12;
+  initialize: function() {
+    this.clearIndicators();
+  },
+  addIndicator: function(ind) {
+    this.indicators.push(ind);
+  },
+  clearIndicators: function() {
+    this.indicators = [];
+  },
+  getcolorScales: function() {
+
+  },
+  getYear: function(year) {
+    var o = {};
+    countryMap = {};
+    var _self = this;
+    this.each(function(c) {
+      countryMap[c.get('gis')] = _.map(_self.indicators,function(ind) {
+        if (c.get(ind+'_at') == undefined)
+          return "#FFFFFF";
+        if (c.get(ind+'_at').toString().indexOf('-') > 0) {
+          yearRange = c.get(ind+'_at').split('-');
+          if ((parseInt(yearRange[0]) <= year && parseInt(yearRange[1]) >= year) && c.get(ind+'_at') != 0) {
+            return COLOR_MAP[ind];
+          }
+        } else {
+          if (c.get(ind+'_at') <= year && c.get(ind+'_at') != 0) {
+            return COLOR_MAP[ind];
+          }
+        }
+        return "#FFFFFF";
+      });
     });
-    return o;
+    colorScale = [];
+    _.each(countryMap,function(colors,gis) {
+      if(colors.length == 0) {
+        countryMap[gis] = "#FFFFFF";
+        colorScale.push("#FFFFFF");
+      } else if(colors.length == 1) {
+        countryMap[gis] = colors[0];
+        colorScale.push(colors[0]);
+      } else if(colors.length == 2) {
+        c1 = $.Color(colors[0]);
+        c2 = $.Color(colors[1]);
+        mix = Color_mixer.mix(c1,c2).toHexString();
+        countryMap[gis] = mix;
+        colorScale.push(mix);
+      } else {
+        c1 = $.Color(colors[0]);
+        c2 = $.Color(colors[1]);
+        c3 = $.Color(colors[2]);
+        mix1 = Color_mixer.mix(c1,c2).toHexString();
+        mix2 = Color_mixer.mix($.Color(mix1),c3).toHexString();
+        countryMap[gis] = mix2;
+        colorScale.push(mix2);
+      }
+    });
+    return countryMap;
   }
 });

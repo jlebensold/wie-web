@@ -2,9 +2,11 @@
 //= require jquery-jvectormap-1.2.2.min
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require color_mixer
 //= require underscore.min
 //= require backbone.min
 //= require bootstrap.min
+//= require bootstrap-switch
 //= require jquery.ui.labeledslider
 //= require 1945
 //= require 1994
