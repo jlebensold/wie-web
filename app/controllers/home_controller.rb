@@ -2,9 +2,9 @@ class HomeController < ApplicationController
   def index
     @data = []
     @grouping = []
+    return
     session = GoogleDrive.login(CONFIG['drive_username'], CONFIG['drive_password'])
     key = "0AsbUBK0-i61ZdEpGRFVMRk1DVGNyam5fTkdXVWU4bEE"
-    return
 
     data_sheet = session.spreadsheet_by_key(key).worksheets[0]
     grouping_sheet = session.spreadsheet_by_key(key).worksheets[1]
