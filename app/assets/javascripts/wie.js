@@ -124,24 +124,18 @@ function load_checkboxes() {
     reload_map(year);
   });
 }
+MIN = 1945;
+MAX = 2015;
 function load_slider(year) {
-  key_dates = [1945,1949,1951,1957,1958,1960,1989,1992,1995,2002,2004];
   $( "#slider" ).labeledslider({
       tickArray: [1945, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2014],
-/*
-      tickArray: key_dates,
-        tickLabels: {
-          1960: 'EFTA'
-      },
-*/
       orientation: 'horizontal',
-      min: 1945,
-      max: 2015,
+      min: MIN,
+      max: MAX,
       step: 1,
       animate: 'fast',
       value: year,
       slide: function( event, ui ) {
-        $(".year").text(ui.value);
         if(ui.value < 1960) {
           load_map('1945_mill_en');
         }
@@ -151,16 +145,20 @@ function load_slider(year) {
         if (ui.value >= 2001) {
           load_map('2013_mill_en');
         }
-        reload_map(ui.value);
+        reload(ui.value);
       }
    });
   load_map('2013_mill_en');
   $(".year").text(year);
 }
+function reload(year) {
+  $(".year").text(year);
+  reload_map(year);
+  reload_slider(year);
+}
 function reload_map(year) {
   window.map.series.regions[0].clear();
   result = countries.getYear(year);
-  //window.map.series.regions[0].setScale(result.scale);
   window.map.series.regions[0].setValues(result);
 }
 function load_megamenu() {
@@ -196,7 +194,6 @@ function toggle_country_labels(enabled) {
     if (element.parentNode) {
       element.parentNode.appendChild(text);
     }
-
     };
   } else {
     $("svg text[country_label=true]").remove();
@@ -207,7 +204,7 @@ function toggle_capital_markers(enabled) {
   if(enabled) {
     countries.each(function(c) {
       map.addMarker(c.get('gis'),{
-        latLng: [c.get('capital_x'), c.get('capital_y')], 
+        latLng: [c.get('capital_x'), c.get('capital_y')],
         name: c.get('capital')
       });
     });
@@ -215,8 +212,32 @@ function toggle_capital_markers(enabled) {
     map.removeAllMarkers();
   }
 }
+function load_key_dates() {
+  steps = MAX-MIN;
 
+  _.each(key_dates, function(date) {
+    years = Math.abs(MIN-date.year)
+    var left = (Math.round(((1/steps) * years)*10000)/100) + '%';
+    note = $('<div>').addClass('key_date')
+            .css('left', left)
+            .html('<p><strong>'+date.year+'</strong>' + date.description + '</p>');
+    $(note).attr('data-year',date.year);
 
+    notch = $('<div>').addClass('notch')
+            .css('left', left);
+    $(notch).click(function(e) {
+      $("#slider").labeledslider( "value", date.year);
+      reload(date.year);
+    });
+    $(".ui-slider-wrapper").append(note);
+    $(".ui-slider-wrapper").append(notch);
+  });
+}
+function reload_slider(year) {
+  $(".key_date").slideUp();
+  $(".key_date[data-year="+year+"]").slideDown();
+
+}
 COLOR_MAP = {};
 DEFAULT_COLOR = "#FFFFFF";
 function load_color_map() {

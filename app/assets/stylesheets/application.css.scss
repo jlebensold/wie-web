@@ -215,8 +215,8 @@ margin-right:20px;
   position: absolute;
   z-index: 100;
   color: #FFF;
-  bottom: 20px;
-  left: 50px;
+  bottom: 40px;
+  left: 30px;
 }
 .wrap {
   width: 100%;
@@ -226,7 +226,32 @@ margin-right:20px;
 .jvectormap-zoomin, .jvectormap-zoomout {
   display:none;
 }
-
+.key_date {
+  position: absolute;
+  height: 100px;
+  display: none;
+  border-left: 1px solid #CCC;
+  p {
+    padding-top: 65px;
+    strong {
+      font-weight: 700;
+      display: block;
+      font-size: 15px;
+    }
+    font-size: 12px;
+  }
+}
+.ui-slider-wrapper .notch {
+}
+.notch {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: -4px;
+  background: #FAFAFA;
+  border-radius: 10px;
+  border: 1px solid darken($accentColour, 10%);
+}
 .tips {
   position: absolute;
   width: 200px;
@@ -259,4 +284,7 @@ margin-right:20px;
     font-size:12px;
     color:#fff;
   }
+}
+.footer {
+  text-align: center;
 }
