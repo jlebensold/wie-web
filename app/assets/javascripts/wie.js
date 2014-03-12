@@ -153,6 +153,7 @@ function load_megamenu() {
   });
 }
 COLOR_MAP = {};
+DEFAULT = "#FFFFFF";
 function load_color_map() {
   $(".groupings input[type=checkbox]").each(function(emt) {
     COLOR_MAP[$(this).val()] = $(this).data('color');
@@ -169,9 +170,6 @@ var CountryList = Backbone.Collection.extend({
   },
   clearIndicators: function() {
     this.indicators = [];
-  },
-  getcolorScales: function() {
-
   },
   getYear: function(year) {
     var o = {};
@@ -194,28 +192,16 @@ var CountryList = Backbone.Collection.extend({
         return "#FFFFFF";
       });
     });
-    colorScale = [];
     _.each(countryMap,function(colors,gis) {
       if(colors.length == 0) {
         countryMap[gis] = "#FFFFFF";
-        colorScale.push("#FFFFFF");
       } else if(colors.length == 1) {
         countryMap[gis] = colors[0];
-        colorScale.push(colors[0]);
       } else if(colors.length == 2) {
-        c1 = $.Color(colors[0]);
-        c2 = $.Color(colors[1]);
-        mix = Color_mixer.mix(c1,c2).toHexString();
-        countryMap[gis] = mix;
-        colorScale.push(mix);
+        countryMap[gis] = Color_mixer.mix($.Color(colors[0]),$.Color(colors[1])).toHexString();
       } else {
-        c1 = $.Color(colors[0]);
-        c2 = $.Color(colors[1]);
-        c3 = $.Color(colors[2]);
-        mix1 = Color_mixer.mix(c1,c2).toHexString();
-        mix2 = Color_mixer.mix($.Color(mix1),c3).toHexString();
-        countryMap[gis] = mix2;
-        colorScale.push(mix2);
+        mix1 = Color_mixer.mix($.Color(colors[0]),$.Color(colors[1])).toHexString();
+        countryMap[gis] = Color_mixer.mix($.Color(mix1),$.Color(colors[2])).toHexString();
       }
     });
     return countryMap;
