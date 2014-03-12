@@ -19,8 +19,11 @@ function load_map(name) {
         attribute: 'fill'
       }]
     },
-    onLabelShow: function(e, el, code){
-      el.html(el.html()+' (GDP - '+gdpData[code]+')');
+    markerStyle: {
+      initial: {
+        fill: '#F8E23B',
+        stroke: '#383f47'
+      }
     },
     onRegionClick: function(e, gis) {
       showCountry(e,countries.find(function(d){return d.get('gis') == gis }));
@@ -92,12 +95,12 @@ function load_checkboxes() {
   $(".infobox").on({
     mouseenter: function (e) {
       $(e.currentTarget).css('color',$(e.currentTarget).data('color'));
-    }, 
-    mouseleave: function(e) { 
+    },
+    mouseleave: function(e) {
       $(e.currentTarget).removeAttr('style');
     }
   }, '.fill_color');
-  
+
   $(".infobox").on('click','a.fill_color', function (e, data) {
     e.preventDefault();
     if($(e.currentTarget).hasClass('enabled')) {
@@ -106,7 +109,7 @@ function load_checkboxes() {
     } else {
       $(e.currentTarget).addClass('enabled');
       $($($(e.currentTarget)).find('span')).css('color',$(e.currentTarget).data('color'));
-    } 
+    }
     countries.clearIndicators();
     _.each($(".infobox a.fill_color"), function(emt) {
       if($(emt).hasClass('enabled')) {
@@ -124,7 +127,7 @@ function load_checkboxes() {
 function load_slider(year) {
   key_dates = [1945,1949,1951,1957,1958,1960,1989,1992,1995,2002,2004];
   $( "#slider" ).labeledslider({
-      tickInterval: 10,
+      tickArray: [1945, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2014],
 /*
       tickArray: key_dates,
         tickLabels: {
@@ -161,21 +164,59 @@ function reload_map(year) {
   window.map.series.regions[0].setValues(result);
 }
 function load_megamenu() {
-  $(".toggled").hide();
-  $("a.toggler").click(function(e) {
-    e.preventDefault();
-    if ($(".toggled").hasClass('toggled-out')) {
-      $(".toggled").slideUp();
-      $(".toggled").removeClass('toggled-out');
-      $(".toggler .the-caret").html("&#9660;");
-    } else {
-      $(".toggled").slideDown();
-      $(".toggled").addClass('toggled-out');
-      $(".toggler .the-caret").html("&#9650;");
+  $(".menuwrap input").bootstrapSwitch();
+  $(".menuwrap input").on('switchChange', function (e, data) {
+    if ( $(this).val() == "show_countries") {
+      toggle_country_labels($(this).is(':checked'));
     }
-
+    if ( $(this).val() == "show_capitals") {
+      toggle_capital_markers($(this).is(':checked'));
+    }
   });
 }
+function toggle_country_labels(enabled) {
+  if(enabled) {
+   regions=map.regions;
+    for ( region in regions ){ // only interested in a subset of countries
+    var element = regions[region].element.node;
+    bbox = element.getBBox();
+
+    point_ori = [bbox.x + bbox.width/2, bbox.y + bbox.height/2];
+    point = map.pointToLatLng(point_ori[0],point_ori[1]); // convert it to lat lon
+
+    var text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    var b = bbox;
+
+    text.setAttribute("x", point_ori[0]);
+    text.setAttribute("y", point_ori[1]);
+    text.setAttribute("country_label", "true");
+    text.textContent = map.getRegionName(region);
+    text.setAttribute("font-size", "12");
+
+    if (element.parentNode) {
+      element.parentNode.appendChild(text);
+    }
+
+    };
+  } else {
+    $("svg text[country_label=true]").remove();
+  }
+}
+
+function toggle_capital_markers(enabled) {
+  if(enabled) {
+    countries.each(function(c) {
+      map.addMarker(c.get('gis'),{
+        latLng: [c.get('capital_x'), c.get('capital_y')], 
+        name: c.get('capital')
+      });
+    });
+  } else {
+    map.removeAllMarkers();
+  }
+}
+
+
 COLOR_MAP = {};
 DEFAULT_COLOR = "#FFFFFF";
 function load_color_map() {
@@ -219,8 +260,8 @@ var CountryList = Backbone.Collection.extend({
         return null;
       });
     });
-    _.each(countryMap,function(colors,gis) { 
-      countryMap[gis] = _.compact(colors); 
+    _.each(countryMap,function(colors,gis) {
+      countryMap[gis] = _.compact(colors);
     });
     _.each(countryMap,function(colors,gis) {
       if(colors.length == 0) {
