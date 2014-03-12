@@ -65,6 +65,9 @@ function render_group_panel(emt, group) {
       '<a data-toggle="collapse" data-parent="#accordion" href="#'+group.code+'">' +
         group.name +
       '</a>' +
+        '<a class="fill_color" href="#" data-code="'+group.code+'" data-color="'+group.color+'">'+
+          '<span class="glyphicon glyphicon-eye-close" ></span>' +
+        '</a>' +
     '</h1>' +
   '</div>' +
   '<div id="'+group.code+'" class="panel-collapse collapse">' +
@@ -86,13 +89,34 @@ function render_group_panel(emt, group) {
   '</div>');
 }
 function load_checkboxes() {
-  $(".groupings input[type=checkbox]").bootstrapSwitch('size', 'small');
-  $(".groupings input").on('switchChange', function (e, data) {
+  $(".infobox").on({
+    mouseenter: function (e) {
+      $(e.currentTarget).css('color',$(e.currentTarget).data('color'));
+    }, 
+    mouseleave: function(e) { 
+      $(e.currentTarget).removeAttr('style');
+    }
+  }, '.fill_color');
+  
+  $(".infobox").on('click','a.fill_color', function (e, data) {
+    e.preventDefault();
+    if($(e.currentTarget).hasClass('enabled')) {
+      $(e.currentTarget).removeClass('enabled');
+      $($($(e.currentTarget)).find('span')).removeAttr('style');
+    } else {
+      $(e.currentTarget).addClass('enabled');
+      $($($(e.currentTarget)).find('span')).css('color',$(e.currentTarget).data('color'));
+    } 
     countries.clearIndicators();
-    reload_map(year);
-    _.each($(".groupings input:checked"), function(emt) {
-      countries.addIndicator($(emt).val());
-      return;
+    _.each($(".infobox a.fill_color"), function(emt) {
+      if($(emt).hasClass('enabled')) {
+        countries.addIndicator($(emt).data('code'));
+        $(emt).find('.glyphicon').removeClass('glyphicon-eye-close');
+        $(emt).find('.glyphicon').addClass('glyphicon-eye-open');
+      } else {
+        $(emt).find('.glyphicon').addClass('glyphicon-eye-close');
+        $(emt).find('.glyphicon').removeClass('glyphicon-eye-open');
+      }
     });
     reload_map(year);
   });
@@ -153,10 +177,10 @@ function load_megamenu() {
   });
 }
 COLOR_MAP = {};
-DEFAULT = "#FFFFFF";
+DEFAULT_COLOR = "#FFFFFF";
 function load_color_map() {
-  $(".groupings input[type=checkbox]").each(function(emt) {
-    COLOR_MAP[$(this).val()] = $(this).data('color');
+  _.each(grouping,function(g) {
+    COLOR_MAP[g.code] = g.color
   });
 }
 var Country = Backbone.Model.extend({});;
@@ -177,8 +201,11 @@ var CountryList = Backbone.Collection.extend({
     var _self = this;
     this.each(function(c) {
       countryMap[c.get('gis')] = _.map(_self.indicators,function(ind) {
+        if (c.get(ind) == "1") {
+          return COLOR_MAP[ind];
+        }
         if (c.get(ind+'_at') == undefined)
-          return "#FFFFFF";
+          return null;
         if (c.get(ind+'_at').toString().indexOf('-') > 0) {
           yearRange = c.get(ind+'_at').split('-');
           if ((parseInt(yearRange[0]) <= year && parseInt(yearRange[1]) >= year) && c.get(ind+'_at') != 0) {
@@ -189,8 +216,11 @@ var CountryList = Backbone.Collection.extend({
             return COLOR_MAP[ind];
           }
         }
-        return "#FFFFFF";
+        return null;
       });
+    });
+    _.each(countryMap,function(colors,gis) { 
+      countryMap[gis] = _.compact(colors); 
     });
     _.each(countryMap,function(colors,gis) {
       if(colors.length == 0) {

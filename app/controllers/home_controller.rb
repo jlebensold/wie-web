@@ -23,7 +23,7 @@ class HomeController < ApplicationController
           h[key] = val.to_s.to_i
         else
           h[key] = val
-        end  
+        end
       end
       h
     end
