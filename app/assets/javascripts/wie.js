@@ -76,19 +76,18 @@ function render_group_panel(emt, group) {
   '</div>' +
   '<div id="'+group.code+'" class="panel-collapse collapse">' +
      '<div class="panel-body">' +
-      '<h5>Overview</h5>' +
-      '<ul>' +
-        '<li><h4>Established:</h4> </br><a href="'+group.uri+'">'+group.established+'</a></li>' +
-        '<li><h4>Members:</h4> </br>'+group.num_countries+'</li>' +
-        '<li><h4>Headquarters:</h4> </br><a href="/">???</a></li>' +
-      '</ul>' +
+      '<div class="row"><h5>Overview</h5></div>' +
+      '<div class="row"><div class="slug col-md-1"></div>' +
+      '<ul class="col-md-6">' +
+        '<li><h4>Established:</h4> <a href="'+group.uri+'">'+group.established+'</a></li>' +
+        '<li><h4>No. of Members:</h4> '+group.num_countries+'</li>' +
+        '<li><h4>Headquarters:</h4> <a href="/">???</a></li>' +
+      '</ul></div>' +
       group.definition +
-      '</br>' +
-      '<h5>Read More</h5>' +
-      '<ul>' +
-        '<li><a href="'+group.url+'">Official Site</a></li>' +
-        '<li><a href="'+group.wiki_uri+'">Wikipedia</a></li>' +
-      '</ul>' +
+      '</br>' + '</br>' +
+      '<h5>Read More </h5>' +
+        '<a href="'+group.url+'">+ Official Site </a>' + 
+        '<a href="'+group.wiki_uri+'">+ Wikipedia </a>' +
      '</div>' +
   '</div>');
 }
