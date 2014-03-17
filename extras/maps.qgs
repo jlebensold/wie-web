@@ -4,10 +4,10 @@
     <mapcanvas>
         <units>degrees</units>
         <extent>
-            <xmin>-189</xmin>
-            <ymin>-160.29288968172940599</ymin>
-            <xmax>189</xmax>
-            <ymax>153.88892850008878099</ymax>
+            <xmin>-83.01958328467938486</xmin>
+            <ymin>18.40855082160886269</ymin>
+            <xmax>92.55182697392046975</xmax>
+            <ymax>134.08123684489476091</ymax>
         </extent>
         <projections>0</projections>
         <destinationsrs>
@@ -23,10 +23,10 @@
             </spatialrefsys>
         </destinationsrs>
     </mapcanvas>
-    <legend updateDrawingOrder="true" activeLayer="ne_10m_admin_0_countries20140211232916586">
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="ne_10m_admin_0_countries" showFeatureCount="0">
+    <legend updateDrawingOrder="true" activeLayer="CNTRY9420140211172443708">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="ne_10m_admin_0_countries" showFeatureCount="0">
             <filegroup open="true" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="ne_10m_admin_0_countries20140211232916586" visible="1"/>
+                <legendlayerfile isInOverview="0" layerid="ne_10m_admin_0_countries20140211232916586" visible="0"/>
             </filegroup>
         </legendlayer>
         <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="CNTRY94" showFeatureCount="0">
@@ -34,9 +34,9 @@
                 <legendlayerfile isInOverview="0" layerid="CNTRY9420140211172443708" visible="1"/>
             </filegroup>
         </legendlayer>
-        <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="cntry1945" showFeatureCount="0">
+        <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="cntry1945" showFeatureCount="0">
             <filegroup open="true" hidden="false">
-                <legendlayerfile isInOverview="0" layerid="cntry194520140211163535956" visible="1"/>
+                <legendlayerfile isInOverview="0" layerid="cntry194520140211163535956" visible="0"/>
             </filegroup>
         </legendlayer>
     </legend>

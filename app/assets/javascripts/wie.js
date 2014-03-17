@@ -3,6 +3,7 @@ var current_map = '';
 function setMapScale() {
   // TODO: refine this so it always looks awesome
   map.setScale(map.width/1000, map.width, map.height -350);
+  reload(window.year);
 }
 function load_map(name) {
   if (name == window.current_map)
@@ -136,16 +137,17 @@ function load_slider(year) {
       animate: 'fast',
       value: year,
       slide: function( event, ui ) {
-        if(ui.value < 1960) {
+        window.year = ui.value;
+        if(window.year < 1960) {
           load_map('1945_mill_en');
         }
-        if(ui.value >= 1994 && ui.value < 2001) {
+        if(window.year >= 1994 && window.year < 2001) {
           load_map('1994_mill_en');
         }
-        if (ui.value >= 2001) {
+        if (window.year >= 2001) {
           load_map('2013_mill_en');
         }
-        reload(ui.value);
+        reload(window.year);
       }
    });
   load_map('2013_mill_en');
