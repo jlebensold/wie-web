@@ -1,9 +1,12 @@
 var map;
 var current_map = '';
 function setMapScale() {
-  // TODO: refine this so it always looks awesome
-  map.setScale(map.width/1000, map.width, map.height -350);
+  scale = getScale();
+  map.setScale(scale[0], scale[1], scale[2]);
   reload(window.year);
+}
+function getScale() { 
+  return [map.width/1000, map.width, map.height - 350];
 }
 function load_map(name) {
   if (name == window.current_map)
@@ -35,7 +38,43 @@ function load_map(name) {
 function showCountry(ev, country) {
   $(".tips").remove();
   ob = country.toJSON();
-  emt = $('<div class="tips">' + '<a href="#" class="close"><span class="glyphicon glyphicon-remove"></span></a>' +
+
+
+  window.map.setFocusLatLng = function(scale, lat, lng){
+      var point,
+          proj = jvm.WorldMap.maps[current_map].projection,
+          centralMeridian = proj.centralMeridian,
+          width = this.width - this.baseTransX * 2 * this.baseScale,
+          height = this.height - this.baseTransY * 2 * this.baseScale,
+          inset,
+          bbox,
+          scaleFactor = this.scale / this.baseScale,
+          centerX,
+          centerY;
+
+      if (lng < (-180 + centralMeridian)) {
+          lng += 360;
+      }
+
+      point = jvm.Proj[proj.type](lat, lng, centralMeridian);
+      inset = this.getInsetForPoint(point.x, point.y);
+      bbox = inset.bbox;
+      y_offset = 300;
+      x_offset = 100;
+      x_coord = ((point.x / 10000) + width/2);
+      y_coord = ((point.y / 10000) + height) * scale;
+      if (x_coord > 200)
+        x_coord += x_offset;
+      if (y_coord < 100)
+        y_coord += y_offset;
+      return [x_coord, y_coord];
+  }
+  scale = getScale();
+  var xy = map.setFocusLatLng(scale[0], ob.capital_x, ob.capital_y);
+
+
+  emt = $('<div class="tips" >' + 
+  '<a href="#" class="close"><span class="glyphicon glyphicon-remove"></span></a>' +
   '<h3>' + ob.name + '</h3>' +
   '<h4>Capital: </h4>' + '<p>' + ob.capital + '</p>' +
   '<h4>Population: </h4>' + '<p>' + ob.population + '</p>' +
@@ -49,8 +88,11 @@ function showCountry(ev, country) {
   $(emt).css({
     'z-index': 1000,
     'padding': "10px",
-    'left':    ($(ev.currentTarget).offset().left - 100)+ 'px',
-    'top':     '10px'
+//    'left':    ($(ev.currentTarget).offset().left - 100)+ 'px',
+//    'top':     '10px'
+    left: xy[0]+ 'px',
+    top: xy[1]+ 'px'
+
   });
   $("#world-map-gdp").append(emt);
 }
