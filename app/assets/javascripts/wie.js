@@ -112,6 +112,7 @@ function render_group_panel(emt, group) {
       '<a data-toggle="collapse" data-parent="#accordion" href="#'+group.code+'">' +
         group.name +
       '</a>' +
+      '<span class="chevron">&#x25BE;</span>' +
         '<a class="fill_color" href="#" data-code="'+group.code+'" data-color="'+group.color+'">'+
           '<span class="glyphicon glyphicon-eye-close" ></span>' +
         '</a>' +
