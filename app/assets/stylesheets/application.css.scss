@@ -30,8 +30,8 @@ $accentColour: #E7A329;
 
 body, h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6, .text-muted, .checkbox,  text, label, .ui-slider-labels, .key_date {
-  font-family:'Roboto', sans-serif;
-  font-weight:100;
+  font-family:'Raleway', sans-serif;
+  font-weight:300;
   color:#888;
 }
 .ui-slider-labels {
@@ -39,14 +39,14 @@ body, h1, h2, h3, h4, h5, h6,
 }
 
 body {
-  background-color:#f4f4f4;
+  background-color:#5EB4DD;
 }
 
 h1 {
-border-bottom:1px dotted #ddd;
-padding-bottom:10px;
-margin-top:20px;
-font-size:26px;
+    border-bottom:1px dotted #ddd;
+    padding-bottom:10px;
+    margin-top:20px;
+    font-size:26px;
 }
 
 h4 {
@@ -101,6 +101,9 @@ label {
   font-size:20px;
 }
 
+.year {
+    font-weight:500;   
+}
 
 .checkbox {
   margin-left:15px;
@@ -180,8 +183,8 @@ margin-right:20px;
   font-size:50px;
   padding-top: 20px;
   margin-left:50px;
-  font-weight:400;
-  color:#E7A329;
+  font-weight:500;
+  color:#fff;
 }
 
 .panel-group {
