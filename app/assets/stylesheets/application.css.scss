@@ -29,7 +29,7 @@ $accentColour: #E7A329;
 .vertical .ui-slider-label-ticks span { position: relative; display: inline-block; margin-left: 1em; top: .6em; }
 
 body, h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6, .text-muted, .checkbox,  .ui-slider-labels{
+.h1, .h2, .h3, .h4, .h5, .h6, .text-muted, .checkbox,  text, label, .ui-slider-labels, .key_date {
   font-family:'Roboto', sans-serif;
   font-weight:100;
   color:#888;
@@ -46,25 +46,24 @@ h1 {
 border-bottom:1px dotted #ddd;
 padding-bottom:10px;
 margin-top:20px;
-font-size:30px;
+font-size:26px;
 }
 
 h4 {
   color:#aaa;
-  font-size:12px;
-  font-weight:400;
+  font-size:10px;
+  font-weight:300;
   display:inline;
   text-transform:uppercase;
-  letter-spacing:0.6px;
 }
 
 h5  {
   color:#aaa;
-  font-size:14px;
-  font-weight:300;
+  font-size:12px;
+  font-weight:400;
   text-transform:uppercase;
   display:inline;
-  letter-spacing:0.5px;
+  letter-spacing:1px;
 }
 
 h3 {
@@ -86,9 +85,22 @@ a:hover{
 }
 
 text {
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 400;
 }
+
+label {
+  font-size:16px;
+  padding-right:40px;
+  span {
+  font-weight:400;
+  } 
+}
+
+.key_date p strong {
+  font-size:20px;
+}
+
 
 .checkbox {
   margin-left:15px;
@@ -119,8 +131,8 @@ text {
 
 .megamenu {
   padding-left:50px;
-  padding-top:10px;
-  padding-bottom:20px;
+  padding-top:5px;
+  padding-bottom:10px;
 }
 
   .megamenu ul {
@@ -133,11 +145,10 @@ text {
     float: left;
   }
 
-.col-md-2.menuwrap {
-padding-left:30px;
-  h1 {
-  padding-bottom:20px;
-  }
+.col-md-6.menuwrap {
+  text-align:right;
+  float:right;
+  margin-right: 20px;
 }
 
 
@@ -147,6 +158,13 @@ padding-left:20px;
 margin-left:40px;
 padding-bottom:15px;
 margin-right:20px;
+
+  .glyphicon:empty {
+  width: 1.2em;
+  font-size:20px;
+  }
+
+
 }
 
   .col-md-3.sidebar ul{
@@ -159,26 +177,29 @@ margin-right:20px;
 }
 
 .text-muted {
-  font-size:60px;
+  font-size:50px;
   padding-top: 20px;
   margin-left:50px;
+  font-weight:400;
+  color:#E7A329;
 }
 
 .panel-group {
-  height: 580px;
   overflow: scroll;
 }
 
 .panel-group .panel-heading + .panel-collapse .panel-body {
   border-top:none;
   padding-top:0px;
+  padding-bottom:0px;
 }
 .panel-collapse {
-  padding-bottom:10px;
   border-top: 0px;
 }
 
 .panel-body {
+  ul {
+  }
 }
 
 .panel-heading {
@@ -193,9 +214,14 @@ margin-right:20px;
     float: right;
   }
 }
-.panel-collapse h5{
-  padding:0px;
+
+.slug {
+  width:100px;
+  height:100px;
+  background-color:#ccc;
+  margin:0px 15px 10px 0px;
 }
+
 
 #slider {
   background: $accentColour;
@@ -255,7 +281,7 @@ margin-right:20px;
   top: -4px;
   background: #FAFAFA;
   border-radius: 10px;
-  border: 1px solid darken($accentColour, 10%);
+  border: 5px solid #D8851B;
 }
 .tips {
   position: absolute;
@@ -269,7 +295,6 @@ margin-right:20px;
   }
   p {
     color: #ccc;
-    padding:0px;
     margin-bottom:15px;
   }
   h4 {
@@ -292,4 +317,7 @@ margin-right:20px;
 }
 .footer {
   text-align: center;
+  p{
+    font-size:10px;
+  }
 }
