@@ -5,7 +5,7 @@
 @import "../../../vendor/assets/stylesheets/jquery-jvectormap-1.2.2";
 @import "../../../vendor/assets/stylesheets/bootstrap-switch.min";
 
-$accentColour: #E7A329;
+$accentColour: #f39c12;
 .wrapper.horizontal { width: 400px; margin: auto; }
 .wrapper.vertical { position: relative; width: 400px; height: 250px; margin: auto; }
 .wrapper.vertical > div { position: absolute; top: 0; }
@@ -29,7 +29,7 @@ $accentColour: #E7A329;
 .vertical .ui-slider-label-ticks span { position: relative; display: inline-block; margin-left: 1em; top: .6em; }
 
 body, h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6, .text-muted, .checkbox,  text, label, .ui-slider-labels, .key_date {
+.h1, .h2, .h3, .h4, .h5, .h6, .heading, .checkbox,  text, label, .ui-slider-labels, .key_date {
   font-family:'Raleway', sans-serif;
   font-weight:300;
   color:#888;
@@ -39,7 +39,7 @@ body, h1, h2, h3, h4, h5, h6,
 }
 
 body {
-  background-color:#5EB4DD;
+  background-color:#ecf0f1;
 }
 
 h1 {
@@ -47,6 +47,10 @@ h1 {
     padding-bottom:10px;
     margin-top:20px;
     font-size:26px;
+}
+
+h3 {
+  font-weight:300;
 }
 
 h4 {
@@ -66,27 +70,29 @@ h5  {
   letter-spacing:1px;
 }
 
-h3 {
-  font-weight:300;
-}
-
 p {
   font-size:18px;
-  padding: 10px 10px 10px 0px;
 }
 
 a {
-  color:#E7A329;
+  color:$accentColour;
 }
 
 a:hover{
-  color:#E7A329;
+  color:#e67e22;
   text-decoration:none;
 }
 
 text {
   font-size: 9px;
   font-weight: 400;
+}
+
+.heading {
+  font-size:40px;
+  margin-left:30px;
+  font-weight:700;
+  color:#e67e22;
 }
 
 label {
@@ -179,14 +185,6 @@ margin-right:20px;
   position: relative;
 }
 
-.text-muted {
-  font-size:50px;
-  padding-top: 20px;
-  margin-left:50px;
-  font-weight:500;
-  color:#fff;
-}
-
 .panel-group {
   overflow: scroll;
 }
@@ -208,10 +206,10 @@ margin-right:20px;
 .panel-heading {
   padding:0px;
   h1 a {
-    color: #666;
+    color: #999;
   }
   h1 a:hover{
-    color:#E7A329;
+    color:$accentColour;
   }
   a.fill_color {
     float: right;
@@ -222,7 +220,7 @@ margin-right:20px;
   width:100px;
   height:100px;
   background-color:#ccc;
-  margin:0px 15px 10px 0px;
+  margin:0px 0px 20px 0px;
 }
 
 
@@ -298,7 +296,6 @@ margin-right:20px;
   }
   p {
     color: #ccc;
-    margin-bottom:15px;
   }
   h4 {
     color:#777;

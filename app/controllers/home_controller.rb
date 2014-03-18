@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   def index
     @data = []
     @grouping = []
-    return
+    #return
     
     session = GoogleDrive.login(CONFIG['drive_username'], CONFIG['drive_password'])
     key = "0AsbUBK0-i61ZdEpGRFVMRk1DVGNyam5fTkdXVWU4bEE"
