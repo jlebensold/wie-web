@@ -89,8 +89,7 @@ text {
 
 
 .header {
-  height:50px;
-  margin: 200px 0px;
+  margin-top: 200px;
   
   .heading {
     font-size:80px;
@@ -98,6 +97,7 @@ text {
     font-weight:700;
     color:#fff;
     text-align:center;
+    padding-bottom:28px;
     
       &:hover{
           color:#A1A7AC;
@@ -110,6 +110,7 @@ text {
     text-align:center;
     font-size:28px;
     font-weight:200;
+    padding:10px 0px;
   }
 }
 
@@ -119,6 +120,7 @@ text {
   width:200px;
   margin:0 auto;
   background:$accentColour;
+  margin-top:40px;
 }
 
 
