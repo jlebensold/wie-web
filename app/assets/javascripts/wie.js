@@ -17,7 +17,7 @@ function load_map(name) {
   window.map = new jvm.WorldMap({
     container: $('#world-map-gdp .wrap'),
     map: name,
-    backgroundColor: '#7f8c8d',
+    backgroundColor: '#D3D9DD',
     zoomOnScroll: false,
     series: {
       regions: [{

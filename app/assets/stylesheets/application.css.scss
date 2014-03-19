@@ -100,7 +100,7 @@ text {
     text-align:center;
     
       &:hover{
-          color:#7f8c8d;
+          color:#A1A7AC;
       }
   }
   
@@ -132,7 +132,8 @@ label {
 
 
 .year {
-    font-weight:500;   
+    font-weight:500;  
+    color:#fff; 
 }
 
 .checkbox {
@@ -158,8 +159,7 @@ label {
 }
 
 .megamenu {
-  margin-top:100px;
-  padding-left:50px;
+  margin-top:130px;
   padding-bottom:5px;
 }
 
@@ -293,7 +293,7 @@ margin-right:20px;
 }
 .key_date {
   position: absolute;
-  height: 132px;
+  height: 135px;
   display: none;
   border-left: 1px solid #fff;
   padding-left:5px;
