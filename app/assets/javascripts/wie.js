@@ -6,7 +6,7 @@ function setMapScale() {
   reload(window.year);
 }
 function getScale() { 
-  return [map.width/1000, map.width, map.height - 350];
+  return [map.width/1000, map.width, map.height - 550];
 }
 function load_map(name) {
   if (name == window.current_map)
