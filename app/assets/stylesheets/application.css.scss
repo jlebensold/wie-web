@@ -95,12 +95,12 @@ text {
     font-size:80px;
     padding-left:30px;
     font-weight:700;
-    color:#fff;
+    color:#A1A7AC;
     text-align:center;
     padding-bottom:28px;
     
       &:hover{
-          color:#A1A7AC;
+          color:#fff;
       }
   }
   
@@ -114,12 +114,27 @@ text {
   }
 }
 
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+#stars img
+{
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         10s; 
+    -webkit-animation-iteration-count:  1;
+    -webkit-animation-timing-function: linear;
+    }
+
 
 #stars {
-  height:200px;
-  width:200px;
+  height:150px;
+  width:150px;
   margin:0 auto;
-  background:$accentColour;
   margin-top:40px;
 }
 
@@ -161,7 +176,7 @@ label {
 }
 
 .megamenu {
-  margin-top:130px;
+  margin-top:180px;
   padding-bottom:5px;
 }
 
