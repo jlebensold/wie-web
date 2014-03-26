@@ -87,30 +87,37 @@ text {
   font-weight: 400;
 }
 
-
-.header {
-  margin-top: 200px;
+#intro {
+  height:800px;
+  background:$accentColour;
+  position:relative;
+  z-index:3000;
   
-  .heading {
-    font-size:80px;
-    padding-left:30px;
-    font-weight:700;
-    color:#A1A7AC;
-    text-align:center;
-    padding-bottom:28px;
+  .header {
+    padding-top: 200px;
     
-      &:hover{
-          color:#fff;
-      }
-  }
+    .heading {
+      font-size:80px;
+      padding-left:30px;
+      font-weight:700;
+      color:#CF5D03;
+      text-align:center;
+      padding-bottom:28px;
+      border-bottom:none;
+        &:hover{
+        color:#C05907;
+        }
+    }
   
-  .intro {
-    width:800px;
-    margin:0 auto;
-    text-align:center;
-    font-size:28px;
-    font-weight:200;
-    padding:10px 0px;
+    .intro-blurb {
+      width:800px;
+      margin:0 auto;
+      text-align:center;
+      font-size:28px;
+      font-weight:300;
+      padding:10px 0px;
+      color:#fff;
+    }
   }
 }
 
@@ -131,16 +138,34 @@ text {
     }
 
 
+#flag {
+  width:850px;
+  margin:0 auto;
+  padding:50px 0px;
+  z-index:1;
+  position:relative;
+  top:-810px;
+  left:20px;
+}
+
+
 #stars {
   height:150px;
   width:150px;
   margin:0 auto;
   margin-top:40px;
+  z-index:2;
+  position:relative;
 }
 
 
+#interactive {
+  margin:0 auto;
+  margin-top:30px;
+}
+
 label {
-  font-size:16px;
+  font-size:18px;
   padding-right:40px;
   span {
   font-weight:400;
@@ -175,15 +200,6 @@ label {
   color:#aaa;
 }
 
-.megamenu {
-  margin-top:180px;
-  padding-bottom:5px;
-}
-
-  .megamenu ul {
-  list-style-type:none;
-  }
-
   .col-md-8 li {
     display: block;
     width: 20%;
@@ -199,22 +215,35 @@ span.bootstrap-switch-handle-on {
   color:#fff !important;
 }
 
-.col-md-6.menuwrap {
-  text-align:right;
-  float:right;
-  margin-right: 20px;
+.row {
+  margin:0 auto;
 }
 
+.menuwrap {
+  background-color: #BBB9B2;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #ccc;
+    label {
+      color:#fff;
+      font-weight:400;
+    }
+}
 
-.col-md-3.sidebar {
+.col-md-3 {
+  margin-left:30px;
+  margin-right:0px;
+}
+
+.col-md-3 .sidebar {
 background:#fff;
 padding-left:20px;
-margin-left:60px;
-margin-right:10px;
 
   .glyphicon:empty {
   width: 1.2em;
   font-size:20px;
+  margin-right:10px;
   }
     
     .chevron {
@@ -224,7 +253,7 @@ margin-right:10px;
     }
 }
 
-  .col-md-3.sidebar ul{
+  .col-md-3 .sidebar ul{
     list-style-type:none;
   }
 
@@ -314,7 +343,7 @@ margin-right:10px;
   border-left: 1px solid #fff;
   padding-left:5px;
   p {
-    padding-top: 50px;
+    padding-top: 35px;
     strong {
       font-weight: 700;
       display: block;
@@ -333,6 +362,10 @@ margin-right:10px;
   background: #FAFAFA;
   border-radius: 10px;
   border: 5px solid #D8851B;
+  cursor:pointer;
+    &:hover{
+    border: 3px solid #D8851B;
+    }
 }
 .tips {
   position: absolute;

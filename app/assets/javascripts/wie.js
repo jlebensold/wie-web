@@ -114,7 +114,7 @@ function render_group_panel(emt, group) {
       '</a>' +
       '<span class="chevron">&#x25BE;</span>' +
         '<a class="fill_color" href="#" data-code="'+group.code+'" data-color="'+group.color+'">'+
-          '<span class="glyphicon glyphicon-eye-close" ></span>' +
+          '<span class="glyphicon glyphicon-minus-sign" ></span>' +
         '</a>' +
     '</h1>' +
   '</div>' +
@@ -159,11 +159,11 @@ function load_checkboxes() {
     _.each($(".infobox a.fill_color"), function(emt) {
       if($(emt).hasClass('enabled')) {
         countries.addIndicator($(emt).data('code'));
-        $(emt).find('.glyphicon').removeClass('glyphicon-eye-close');
-        $(emt).find('.glyphicon').addClass('glyphicon-eye-open');
+        $(emt).find('.glyphicon').removeClass('glyphicon-minus-sign');
+        $(emt).find('.glyphicon').addClass('glyphicon-ok-sign');
       } else {
-        $(emt).find('.glyphicon').addClass('glyphicon-eye-close');
-        $(emt).find('.glyphicon').removeClass('glyphicon-eye-open');
+        $(emt).find('.glyphicon').addClass('glyphicon-minus-sign');
+        $(emt).find('.glyphicon').removeClass('glyphicon-ok-sign');
       }
     });
     reload_map(year);
