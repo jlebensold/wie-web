@@ -17,7 +17,7 @@ function load_map(name) {
   window.map = new jvm.WorldMap({
     container: $('#world-map-gdp .wrap'),
     map: name,
-    backgroundColor: '#D3D9DD',
+    backgroundColor: '#DDDDDD',
     zoomOnScroll: false,
     series: {
       regions: [{
@@ -109,10 +109,10 @@ function render_group_panel(emt, group) {
   emt.append(
   '<div class="panel-heading">' +
     '<h1>' +
+      '<span class="chevron">+ </span>' +
       '<a data-toggle="collapse" data-parent="#accordion" href="#'+group.code+'">' +
         group.name +
       '</a>' +
-      '<span class="chevron">&#x25BE;</span>' +
         '<a class="fill_color" href="#" data-code="'+group.code+'" data-color="'+group.color+'">'+
           '<span class="glyphicon glyphicon-minus-sign" ></span>' +
         '</a>' +

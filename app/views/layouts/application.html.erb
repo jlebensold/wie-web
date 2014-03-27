@@ -9,25 +9,27 @@
 </head>
 <body>
   <div class="container-liquid">
-     <div id="intro"> 
+     <div class="intro"> 
       <div class="header">
         <ul class="nav nav-pills pull-right">
         </ul>
-        <a href="http://whatiseurope.org" ><h1 class="heading">What is Europe?</h1></a>
-        <p class="intro-blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia lectus vel ipsum ultricies, eu ullamcorper turpis volutpat.
+        <a href="http://whatiseurope.org" ><h1>What is Europe?</h1></a>
+        <p class="blurb">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla lacinia lectus vel ipsum ultricies, eu ullamcorper turpis volutpat.
         </p>
       </div>
-      <div id="stars"><img src="/assets/stars.png" alt="EU" width="150" height="150"></div>
-      <div id="flag"><img src="/assets/eu.svg" alt="EU"></div>
+      <div id="bg-animation"><img src="/assets/eu.svg" alt="EU"></div>
+      <!--<div id="stars"><img src="/assets/stars.png" alt="EU" width="200" height="200"></div>--!>
     </div>
       <%= yield %>
-    <div id="outro">
-    
+    <div class="infographics">      
+        <h1>Infographics and Data Visualizations</h1>
+        <p>Something goes here!</p>
     </div>
+    
     <div class="footer">
       <p>Copyright 2014. All Rights Reserved</p>
     </div>
-
+    
   </div>
 
 </body>
