@@ -1,26 +1,5 @@
-<div class="interactive">
-  <div class="row">
-    <div class="col-md-3">
-      <div class="groupings toggled">
-        <div class="menuwrap">
-          <label for="show_countries">
-            Country Label : <input type="checkbox" data-on-color="wie" data-off-color="default" name="show_countries" value="show_countries" data-size="small">
-          </label>
-        </div>
-      </div>
-      <div class="infobox sidebar"></div>
-    </div>
-    <div class="col-md-8 mapview">
-      <div class="yearwrap"><span class="year"></span></div>
-      <div id="world-map-gdp" style="width:100%; height:100%;">
-          <div class="wrap"></div>
-      </div>
-    </div>
-  </div>
-  <div class="row sliderwrap">
-    <div id="slider"></div>
-  </div>
-  <script>
-    <%= render 'map_js' %>
-  </script>
-</div>
+<%= render 'introduction' %>
+<%= render 'what_is_europe' %>
+<%= render 'who_is_europe' %>
+<%= render 'europe_over_time' %>
+

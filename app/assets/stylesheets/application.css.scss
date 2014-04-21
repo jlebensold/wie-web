@@ -97,7 +97,7 @@ text {
 .intro {
   height:800px;
   background:$accentColour;
-  
+
   .header {
     padding-top: 150px;
     position:relative;
@@ -106,7 +106,7 @@ text {
     -moz-animation: fadein 0.5s; /* Firefox */
     -ms-animation: fadein 0.5s; /* Internet Explorer */
     animation: fadein 0.5s;
-    
+
     h1 {
       font-size:80px;
       padding-left:30px;
@@ -116,7 +116,7 @@ text {
       padding-bottom:28px;
       border-bottom:none;
     }
-  
+
     .blurb {
       width:800px;
       margin:0 auto;
@@ -190,13 +190,13 @@ label {
   padding-right:40px;
   span {
   font-weight:400;
-  } 
+  }
 }
 
 
 .year {
-    font-weight:500;  
-    color:#A8A5A0; 
+    font-weight:500;
+    color:#A8A5A0;
 }
 
 .checkbox {
@@ -248,7 +248,7 @@ span.bootstrap-switch-handle-on {
       color:#fff;
       font-weight:400;
     }
-    
+
     .glyphicon {
       font-size:16px;
       margin-right:10px;
@@ -269,7 +269,7 @@ padding:0px 20px;
   width: 1.2em;
   font-size:20px;
   }
-    
+
     .chevron {
         font-size:22px;
         color:#ccc;
@@ -421,32 +421,45 @@ padding:0px 20px;
     color:#fff;
   }
 }
+/* general sections */
+.what_is_europe,
+.who_is_europe,
+.europe_over_time,
+.intro {
+  h1 {
+    font-size:40px;
+    font-weight:700;
+    text-align:center;
+    padding-bottom:28px;
+    border-bottom:none;
+    margin-top: 0px;
+    padding-top:30px;
+  }
 
+  height: 750px;
+}
+/* What is europe */
+.what_is_europe {
+  background: #007282;
+  h1 {
+    color: #FFF;
+  }
+}
 
-/* Section 3 - Infographics */
-
-.infographics {
-  height:750px;
+/* Who is europe */
+.who_is_europe {
   background-color:#CF5D03;
   margin:0 auto;
   padding: 30px 0px;
-    h1 {
-      font-size:40px;
-      font-weight:700;
-      color:#fff;
-      text-align:center;
-      padding-bottom:28px;
-      border-bottom:none;
-    }
+  color: #FFF;
+  h1 {
+    color: #FFF;
+  }
   p {
-    color:#fff;
     text-align:center;
   }
-  
+
 }
-
-
-
 
 .footer {
   text-align: center;
