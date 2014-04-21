@@ -263,7 +263,6 @@ span.bootstrap-switch-handle-on {
 
 .col-md-3 .sidebar {
 background:#fff;
-padding:0px 20px;
 
   .glyphicon:empty {
   width: 1.2em;
@@ -286,26 +285,33 @@ padding:0px 20px;
   margin-top:30px;
 }
 
-.panel-group {
-  overflow: scroll;
+.panel-group .panel {
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 
-.panel-group .panel-heading + .panel-collapse .panel-body {
+.panel-collapse .panel-heading,
+.panel-collapse .panel-body {
   border-top:none;
   padding-top:0px;
   padding-bottom:0px;
+}
+.panel-body { 
+  height: 260px;
+  overflow: scroll;
 }
 .panel-collapse {
   border-top: 0px;
 }
 
-.panel-body {
-  ul {
-  }
-}
 
 .panel-heading {
   padding:0px;
+  h1 { 
+    padding: 9px 5px;
+    margin: 0px;
+  }
   h1 a {
     color: #999;
   }

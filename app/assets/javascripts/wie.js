@@ -5,7 +5,7 @@ function setMapScale() {
   map.setScale(scale[0], scale[1], scale[2]);
   reload(window.year);
 }
-function getScale() { 
+function getScale() {
   return [map.width/1000, map.width, map.height - 550];
 }
 function load_map(name) {
@@ -74,7 +74,7 @@ function showCountry(ev, country) {
   var xy = map.setFocusLatLng(scale[0], ob.capital_x, ob.capital_y);
 
 
-  emt = $('<div class="tips" >' + 
+  emt = $('<div class="tips" >' +
   '<a href="#" class="close"><span class="glyphicon glyphicon-remove"></span></a>' +
   '<h3>' + ob.name + '</h3>' +
   '<h4>Capital: </h4>' + '<p>' + ob.capital + '</p>' +
@@ -89,8 +89,6 @@ function showCountry(ev, country) {
   $(emt).css({
     'z-index': 1000,
     'padding': "10px",
-//    'left':    ($(ev.currentTarget).offset().left - 100)+ 'px',
-//    'top':     '10px'
     left: xy[0]+ 'px',
     top: xy[1]+ 'px'
 
@@ -103,10 +101,12 @@ function load_grouping(groups) {
   _.each(groups, function(group) {
     render_group_panel($(".panel-group"), group);
   });
-  $(".infobox").collapse();
+  $("#accordion").collapse();
+  $($("#accordion .panel-collapse").first()).collapse('toggle');
 }
 function render_group_panel(emt, group) {
   emt.append(
+'<div class="panel">' +
   '<div class="panel-heading">' +
     '<h1>' +
       '<span class="chevron">+ </span>' +
@@ -129,12 +129,13 @@ function render_group_panel(emt, group) {
         '<li><h4>HQ:</h4> <a href="'+group.uri+'">'+group.headquarters+'</a></li>' +
       '</ul></div>' +
       '<div class="row">'+'<h5>Read More + </h5>'+
-        '<a href="'+group.url+'"> Official Site </a>' + 
+        '<a href="'+group.url+'"> Official Site </a>' +
         '<h5>/ </h5>' +
         '<a href="'+group.wiki_uri+'">Wikipedia </a>' +
       '</div>'+
     '</div>' +
-  '</div>');
+  '</div>' +
+'</div>');
 }
 function load_checkboxes() {
   $(".infobox").on({
