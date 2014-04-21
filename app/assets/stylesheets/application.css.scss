@@ -371,7 +371,17 @@ background:#fff;
 }
 
 .jvectormap-zoomin, .jvectormap-zoomout {
-  display:none;
+  /* display:none; */
+  width: 20px;
+  height: 20px;
+  background: #FFF;
+  color: #222;
+  font-size: 15px;
+  font-weight: bold;
+  display: block;
+}
+.jvectormap-zoomout { 
+  top: 40px;
 }
 .key_date {
   position: absolute;

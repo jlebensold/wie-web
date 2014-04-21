@@ -18,7 +18,7 @@ function load_map(name) {
     container: $('#world-map-gdp .wrap'),
     map: name,
     backgroundColor: '#DDDDDD',
-    zoomOnScroll: false,
+    //    zoomOnScroll: false,
     series: {
       regions: [{
         attribute: 'fill'
