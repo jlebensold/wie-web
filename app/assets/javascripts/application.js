@@ -8,8 +8,3 @@
 //= require bootstrap.min
 //= require bootstrap-switch
 //= require jquery.ui.labeledslider
-//= require 1945
-//= require 1994
-//= require 2013
-//= require wie
-//= require_tree .
