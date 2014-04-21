@@ -176,7 +176,7 @@ text {
 @-ms-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
-}​
+}
 
 
 /* Section 2 - Interactive */
@@ -185,6 +185,13 @@ text {
   margin:0 auto;
 }
 
+.europe_over_time {
+  .section_heading {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+  }
+}
 label {
   font-size:18px;
   padding-right:40px;
@@ -430,7 +437,6 @@ background:#fff;
 /* general sections */
 .what_is_europe,
 .who_is_europe,
-.europe_over_time,
 .intro {
   h1 {
     font-size:40px;

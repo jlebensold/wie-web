@@ -10,11 +10,16 @@ $(function(){
   load_color_map();
   load_megamenu();
   year = 2014;
+  countries.addIndicator('eucu');
   load_checkboxes();
   load_slider(year);
   load_key_dates();
   load_grouping(grouping);
   $( window ).resize(setMapScale);
+  active = $("#head_eucu a.fill_color");
+  $('#head_eucu a.fill_color .glyphicon').addClass('glyphicon-ok-sign');
+  active.addClass('enabled');
+  active.css('color',active.data('color'));
   $(window).resize(function() {
     $(".sliderwrap").html('<div id="slider"></div>');
     reload(window.year);

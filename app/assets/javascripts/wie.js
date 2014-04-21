@@ -102,12 +102,12 @@ function load_grouping(groups) {
     render_group_panel($(".panel-group"), group);
   });
   $("#accordion").collapse();
-  $($("#accordion .panel-collapse").first()).collapse('toggle');
+  $($("#eucu.panel-collapse").first()).collapse('toggle');
 }
 function render_group_panel(emt, group) {
   emt.append(
 '<div class="panel">' +
-  '<div class="panel-heading">' +
+  '<div class="panel-heading" id="head_'+group.code+'">' +
     '<h1>' +
       '<span class="chevron">+ </span>' +
       '<a data-toggle="collapse" data-parent="#accordion" href="#'+group.code+'">' +
@@ -171,7 +171,7 @@ function load_checkboxes() {
   });
 }
 MIN = 1945;
-MAX = 2015;
+MAX = 2014;
 function load_slider(year) {
   $( "#slider" ).labeledslider({
       tickArray: [1945, 1950, 1960, 1970, 1980, 1990, 2000, 2010, 2014],
