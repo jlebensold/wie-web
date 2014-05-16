@@ -245,6 +245,12 @@ span.bootstrap-switch-handle-on {
 
 .row {
   margin:0 auto;
+  padding-top:15px;
+}
+
+.details.row {
+  padding-top:0px;
+  padding-bottom:0px;
 }
 
 .menuwrap {
@@ -296,6 +302,7 @@ background:#fff;
   border: none;
   margin: 0;
   padding: 0;
+  box-shadow:none;
 }
 
 .panel-collapse .panel-heading,
@@ -303,9 +310,17 @@ background:#fff;
   border-top:none;
   padding-top:0px;
   padding-bottom:0px;
+  box-shadow:none;
 }
+
+.panel-group .panel-heading + .panel-collapse .panel-body {
+    border-top:none;
+
+}
+
+
 .panel-body {
-  height: 260px;
+  height: 280px;
   overflow: scroll;
 }
 .panel-collapse {
@@ -316,7 +331,7 @@ background:#fff;
 .panel-heading {
   padding:0px;
   h1 {
-    padding: 9px 5px;
+    padding: 10px 15px;
     margin: 0px;
   }
   h1 a {
@@ -375,8 +390,9 @@ background:#fff;
   width: 20px;
   height: 20px;
   background: #FFF;
-  color: #222;
-  font-size: 15px;
+  color: #888;
+  padding-top:5px;
+  font-size: 20px;
   font-weight: bold;
   display: block;
 }
@@ -485,11 +501,11 @@ background:#fff;
 
 .footer {
   text-align: center;
-  background-color:#CF5D03;
+  background-color:#ecf0f1;
   padding:20px;
     p{
       font-size:10px;
-      color:#A24A06;
+      color:#888;
     }
 }
 

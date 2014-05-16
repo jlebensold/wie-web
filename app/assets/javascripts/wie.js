@@ -109,7 +109,7 @@ function render_group_panel(emt, group) {
 '<div class="panel">' +
   '<div class="panel-heading" id="head_'+group.code+'">' +
     '<h1>' +
-      '<span class="chevron">+ </span>' +
+      '<span class="chevron"></span>' +
       '<a data-toggle="collapse" data-parent="#accordion" href="#'+group.code+'">' +
         group.name +
       '</a>' +
@@ -122,13 +122,13 @@ function render_group_panel(emt, group) {
      '<div class="panel-body">' +
       '<div class="row">'+group.definition+'</div>'+
       '</br>' +
-      '<div class="row"><div class="slug col-md-1"></div>' +
+      '<div class="details row"><div class="slug col-md-1"></div>' +
       '<ul class="col-md-7">' +
         '<li><h4>Established:</h4> <a href="'+group.uri+'">'+group.established+'</a></li>' +
         '<li><h4>Members:</h4> '+group.num_countries+'</li>' +
         '<li><h4>HQ:</h4> <a href="'+group.uri+'">'+group.headquarters+'</a></li>' +
       '</ul></div>' +
-      '<div class="row">'+'<h5>Read More + </h5>'+
+      '<div class="details row">'+'<h5>Read More + </h5>'+
         '<a href="'+group.url+'"> Official Site </a>' +
         '<h5>/ </h5>' +
         '<a href="'+group.wiki_uri+'">Wikipedia </a>' +
